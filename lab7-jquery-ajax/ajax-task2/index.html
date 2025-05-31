@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <p><h2>Ajax</h2></p>
+    <form>
+        <p>ФИО<br/>
+            <input type="text" id="fio"/></p>
+        <p>Email<br/>
+            <input type="text" id="email"/></p>
+        <p>Номер телефона<br/>
+            <input type="text" id="phone"/></p>
+    </form>
+    <p><button id="submit-button">Отправить</button></p>
+    <style>
+        body {
+            background-color: rgb(255, 194, 209);
+            font-family: 'consolas', Arial, sans-serif, bold;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $("#submit-button").click(function() {
+            let fio = $("#fio").val();
+            let email = $("#email").val();
+            let phone = $("#phone").val();
+            $("#fio").val("")
+            $("#email").val("")
+            $("#phone").val("")
+            $.ajax({
+                url: "mail/mail.php",
+                method: "POST",
+                data: {
+                    "fio": fio,
+                    "email": email,
+                    "phone": phone
+                },
+                success: function() {
+                    alert("Письмо успешно отправлено!");
+                    return "Письмо успешно отправлено!";
+                },
+                error: function() {
+                    alert(new Error("Письмо не удалось отправить!"));
+                    return "Письмо не удалось отправить!";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

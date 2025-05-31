@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+</head>
+<body>
+    <div id="menu-container">
+        <div id="menu-button1">
+            <div class="blot"></div>
+            <b>Home</b>
+            <div class="inner-description">
+                <p>Return to home page</p>
+            </div>
+        </div>
+        <div id="menu-button2">
+            <div class="blot"></div>
+            <b>About</b>
+            <div class="inner-description">
+                <p>Read about us</p>
+            </div>
+        </div>
+        <div id="menu-button3">
+            <div class="blot"></div>
+            <b>Widgets</b>
+            <div class="inner-description">
+                <p>Learn more about our widgets</p>
+            </div>
+        </div>
+        <div id="menu-button4">
+            <div class="blot"></div>
+            <b>Kabobs</b>
+            <div class="inner-description">
+                <p>Kabob Kebab Bebop</p>
+            </div>
+        </div>
+        <div id="menu-button5">
+            <div class="blot"></div>
+            <b>Contact</b>
+            <div class="inner-description">
+                <p>Contact with us</p>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            background-color: black;
+            user-select: none;
+        }
+        #menu-container {
+            margin-top: 35vh;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        [id^="menu-button"] {
+            width: 15vw;
+            height: 25vh;
+
+            text-align: center;
+
+            color: white;
+            font-family: 'consolas', Arial, Helvetica, sans-serif;
+
+            font-size: 3.5vw;
+
+            border-radius: 1vw 1vw 1vw 1vw;
+
+            z-index: 0;
+        }
+        .inner-description {
+            color: gray;
+            font-size: 2.5vh;
+
+            display: none;
+        }
+        .blot {
+            position: absolute;
+            z-index: -100;
+
+            background-color: darkviolet;
+
+            width: 5vw;
+            height: 5vw;
+
+            border-radius: 1vw 2vw 4vw 3vw;
+
+            display: none;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $('[id^="menu-button"]')
+            .mouseenter(function() {
+                $(".blot", this).fadeIn(200)
+                $(this).css({"transform": "scale(1.25, 1.25)"})
+                $(this).css({"background-color": "rgb(32, 32, 32)"})
+                $(".inner-description", this).fadeIn(200)
+            })
+            .mouseleave(function() {
+                $(".blot", this).fadeOut(200)
+                $(this).css({"transform": "scale(1, 1)"})
+                $(this).css({"background-color": "rgb(0, 0, 0)"})
+                $(".inner-description", this).fadeOut(200)
+            })
+            .click(function() {
+                $(this).remove()
+            })
+    </script>
+</body>
+</html>

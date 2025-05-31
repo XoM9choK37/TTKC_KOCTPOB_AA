@@ -1,0 +1,169 @@
+header {
+    font-family: Arial, sans-serif, bold;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif, bold;
+}
+button.accordion {
+    border: 1px solid black;
+    background-color: rgb(255, 143, 171);
+}
+button.accordion:hover {
+    background-color: rgb(251, 111, 146);
+}
+button.accordion:active {
+    background-color: rgb(255, 48, 100);
+}
+.panel {
+    background-color: rgb(255, 194, 209);
+    display: none;
+    padding: 20px;
+}
+#panel-date {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+#date-time {
+    padding-right: 25px;
+    padding-top: 125px;
+}
+#panel-calendar {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#panel-calendar-header {
+    background-color: white;
+    border: 1px solid black; color: black;
+    text-align: center;
+    width: 265px;
+}
+#calendar {
+    background-color: rgb(251, 111, 146);
+    border: 1px solid black;
+    text-align: center;
+}
+#calendar tr td {
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+    text-align: center;
+    width: 25px;
+}
+#panel-random {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.block {
+    background-color: white;
+    font-family: Arial, sans-serif, bold;
+    font-size: large;
+    height: 35px;
+    width: 35px;
+}
+.block:hover {
+    background-color: rgb(215, 215, 215);
+}
+.block:active {
+    background-color: rgb(175, 175, 175);
+}
+#panel-insert-delete button {
+    background-color: white;
+}
+#panel-insert-delete button:hover {
+    background-color: rgb(215, 215, 215);
+}
+#panel-insert-delete button:active {
+    background-color: rgb(175, 175, 175);
+}
+#list-for-deleting {
+    display: flex;
+    flex-direction: column;
+}
+#list-for-deleting button {
+    align-self: flex-start;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+#panel-object-event table {
+    align-self: center;
+    justify-self: center;
+}
+#panel-object-event button {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+}
+#panel-object-event button:hover {
+    background-color: rgb(215, 215, 215);
+}
+#panel-object-event button:active {
+    background-color: rgb(175, 175, 175);
+}
+#panel-object-event table {
+    border: 10px solid black;
+}
+#cat-image {
+    background-image: url(../images/cat_image.jpg);
+    height: 85px;
+    width: 85px;
+}
+#panel-sweet-menu button {
+    background-color: white;
+}
+#panel-sweet-menu button:hover {
+    background-color: rgb(215, 215, 215);
+}
+#panel-sweet-menu button:active {
+    background-color: rgb(175, 175, 175);
+}
+#sweet-panel {
+    align-items: flex-start;
+    display: none;
+    flex-direction: column;
+}
+#sweet-panel button {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 30px;
+}
+#sweet-button {
+    font-size: 25px;
+    font-weight: 700;
+}
+#panel-alpha {
+    height: 400px;
+
+    position: relative;
+}
+#alpha-picture {
+    background-image: url(../images/another_cat_image.jpg);
+    height: 300px;
+    width: 300px;
+
+    position: absolute;
+}
+#alpha-text {
+    font-size: xx-large;
+
+    position: absolute;
+
+    left: 70px;
+    top: 120px;
+}
+#panel-form {
+    text-align: center;
+
+    font-family: 'consolas', Arial, sans-serif, bold;
+}
+.notification {
+    color: crimson;
+}
+#success {
+    color: green;
+}

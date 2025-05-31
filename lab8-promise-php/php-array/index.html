@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Array</title>
+</head>
+<body>
+    <p><h2>PHP Array — информация о товарах</h2></p>
+    <p>Название товара<br />
+        <input type="text" id="name" /></p>
+    <p>Цена<br />
+        <input type="text" id="cost" /></p>
+    <p>Количество<br />
+        <input type="text" id="amount" /></p>
+    <input type="submit" value="Добавить данные" id="write" />
+    <br /><br /><br /><br />
+    <input type="submit" value="Вывести все данные" id="print" />
+    <br /><br />
+    <table id="data"></table>
+    <br />
+    <input type="submit" value="Скрыть данные" id="hide" />
+    <style>
+        body {
+            background-color: rgb(255, 194, 209);
+            font-family: 'consolas', Arial, sans-serif, bold;
+        }
+        #data {
+            background-color: white;
+            border: 2px solid black;
+        }
+        #data tr {
+            border: 2px solid black;
+        }
+        #data td {
+            border: 2px solid black;
+            padding: 5px;
+        }
+    </style>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $("#data").hide();
+        $("#hide").hide();
+        $("#write").click(function() {
+            $.ajax({
+                url: "php/write-info.php",
+                method: "POST",
+                data: {
+                    name: $("#name").val(),
+                    cost: $("#cost").val(),
+                    amount: $("#amount").val(),
+                },
+                success: function() {
+                    if ($("#data").is(":visible"))
+                        printTable();
+                    alert("Данные успешно добавлены!");
+                },
+                error: function() {
+                    alert(new Error("Данные не удалось добавить!"));
+                },
+            });
+        });
+        $("#print").click(function() {
+            printTable();
+        });
+        $("#hide").click(function() {
+            if ($("#data").is(":visible")) {
+                $("#data").hide();
+                $("#hide").hide();
+            }
+        });
+
+        function printTable() {
+            $.ajax({
+                url: "php/get-info.php",
+                method: "GET",
+                success: function(data) {
+                    loadTable(toTable(data));
+                },
+                error: function() {
+                    alert(new Error("Данные не удалось вывести!"));
+                },
+            });
+            $("#data").show();
+            $("#hide").show();
+        }
+        function toTable(str) {
+            let table = new Array();
+            let rows = str.split('\n');
+            for (let i = 0; i < rows.length - 1; i++) {
+                let row = rows[i].split(';');
+                table.push(row);
+            }
+            return table;
+        }
+        function loadTable(table) {
+            let str = `<tr>
+                <td>Название товара</td>
+                <td>Цена</td>
+                <td>Количество</td>
+                </tr>`;
+            for (let i = 0; i < table.length; i++) {
+                let row = "<tr>";
+                for (let j = 0; j < table[i].length; j++)
+                    row += `<td>${table[i][j]}</td>`;
+                row += "</tr>";
+                str += row;
+            }
+            $("#data").html(str);
+        }
+    </script>
+</body>
+</html>

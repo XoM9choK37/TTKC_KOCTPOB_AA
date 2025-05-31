@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <p><h2>Примеры</h2></p>
+    <p>Promise Resolve и Promise Reject<br/>
+        <button id="promise-then">Promise Then</button></p>
+    <p>Дожидается завершения всех Promise<br/>
+        <button id="promise-all">Promise All</button></p>
+    <p>Выводит один Promise из массива<br/>
+        <button id="promise-race">Promise Race</button></p>
+    <style>
+        body {
+            background-color: rgb(255, 194, 209);
+            font-family: 'consolas', Arial, sans-serif, bold;
+        }
+    </style>
+    <script>
+        document.querySelector("#promise-then")
+        .addEventListener('click', () => {
+            const promise = new Promise((resolve, reject) => {
+            const randomNumber = Math.random();
+            if (randomNumber < .5) {
+                resolve('Всё прошло отлично!');
+            } else {
+                reject('Promise отклонён!');
+            }
+            });
+            promise.then(
+            (data) => { alert(data); },
+            (error) => { alert(error); }
+        );})
+        document.querySelector('#promise-all')
+        .addEventListener('click', () => {        
+            const promise1 = new Promise((resolve, reject) => {
+            setTimeout(() => { resolve('Promise1 выполнен');
+            }, 2000);
+            });
+            const promise2 = new Promise((resolve, reject) => {
+            setTimeout(() => { resolve('Promise2 выполнен');
+            }, 1500);
+            });
+            Promise.all([promise1, promise2])
+            .then((data) => alert(`${data[0]} и ${data[1]}`))
+            .catch((error) => alert(error));
+        })
+        document.querySelector('#promise-race')
+        .addEventListener('click', () => {
+            const promise1 = new Promise((resolve, reject) => {
+            setTimeout(() => { resolve('Promise1 выполнен');
+            }, 1000);
+            });
+            const promise2 = new Promise((resolve, reject) => {
+            setTimeout(() => { reject('Promise2 отклонен');
+            }, 1500);
+            });
+            Promise.race([promise1, promise2])
+            .then((data) => alert(data))
+            .catch((error) => alert(error));
+        })
+    </script>
+</body>
+</html>

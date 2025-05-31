@@ -1,0 +1,227 @@
+body {
+    background-color: rgb(16, 0, 43);
+
+    overflow: hidden;
+}
+#tutorial-text {
+    margin-left: 4vw;
+    margin-top: 5vh;
+
+    color: rgb(224, 170, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    
+    z-index: -10;
+}
+#recommendation-text {
+    margin-left: 4vw;
+    margin-top: 5vh;
+
+    color: rgb(157, 78, 221);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+
+    z-index: -1;
+}
+#start-button {
+    margin-left: 44vw;
+    margin-top: 12vh;
+
+    height: 10vh;
+    width: 10vw;
+
+    background-color: rgb(224, 170, 255);
+    border: 1vh solid rgb(60, 9, 108);
+    color: rgb(60, 9, 108);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+}
+#start-button:hover {
+    background-color: rgb(60, 9, 108);
+    border: 1vh solid rgb(224, 170, 255);
+    color: rgb(224, 170, 255);
+}
+#top-border {
+    background-color: crimson;
+
+    height: 5vh;
+    width: 100vw;
+
+    position: absolute;
+
+    left: 0vh;
+    top: 0vh;
+}
+#right-border {
+    background-color: crimson;
+
+    height: 100vh;
+    width: 5vh;
+
+    position: absolute;
+
+    right: 0vh;
+    top: 0vh;
+}
+#bottom-border {
+    background-color: crimson;
+
+    height: 5vh;
+    width: 100vw;
+
+    position: absolute;
+
+    left: 0vh;
+    bottom: 0vh;
+}
+#left-border {
+    background-color: crimson;
+
+    height: 100vh;
+    width: 5vh;
+
+    position: absolute;
+
+    left: 0vh;
+    top: 0vh;
+}
+#cursor-light {
+    background:
+        radial-gradient(rgba(224, 170, 255, 1),
+        rgba(224, 170, 255, 0));
+    background:
+        -webkit-radial-gradient(rgba(224, 170, 255, 1),
+        rgba(224, 170, 255, 0));
+    background:
+        -moz-radial-gradient(rgba(224, 170, 255, 1),
+        rgba(224, 170, 255, 0));
+    background:
+        -o-radial-gradient(rgba(224, 170, 255, 1),
+        rgba(224, 170, 255, 0));
+    border-radius: 3vh;
+
+    height: 3vh;
+    width: 3vh;
+
+    position: absolute;
+
+    left: -100px;
+    top: -100px;
+
+    display: none;
+
+    z-index: -1000;
+}
+#plot-text {
+    position: absolute;
+
+    left: 10vw;
+    top: 10vh;
+
+    color: rgb(224, 170, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+
+    animation-duration: 3s;
+    animation-name: plot-text-animation;
+
+    z-index: -100;
+}
+@keyframes plot-text-animation {
+    from {
+        color: rgba(0, 0, 0, 0);
+        left: 0vw;
+        top: 0vh;
+    } to {
+        color: rgb(224, 170, 255);
+        left: 10vw;
+        top: 10vh;
+    }
+}
+@keyframes plot-text-animation-end {
+    from {
+        color: rgb(224, 170, 255);
+    } to {
+        color: rgba(0, 0, 0, 0);
+    }
+}
+.red-block-up-down {
+    position: absolute;
+
+    top: -50vh;
+
+    animation-duration: 12s;
+    animation-name: red-block-up-down-animation;
+}
+@keyframes red-block-up-down-animation {
+    from {
+        top: -50vh;
+    } to {
+        top: 150vh;
+    }
+}
+.rotating-red-block-right-left {
+    position: absolute;
+
+    right: -15vw;
+
+    animation: red-block-right-left-rotating 2s linear infinite,
+        red-block-right-left-going 8s linear 1;
+}
+@keyframes red-block-right-left-rotating {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(-360deg);
+    }
+}
+@keyframes red-block-right-left-going {
+    from {
+        right: -15vw;
+    } to {
+        right: 115vw;
+    }
+}
+.rotating-red-block-left-right {
+    position: absolute;
+
+    left: -15vw;
+
+    animation: red-block-left-right-rotating 2s linear infinite,
+        red-block-left-right-going 8s linear 1;
+}
+@keyframes red-block-left-right-rotating {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes red-block-left-right-going {
+    from {
+        left: -15vw;
+    } to {
+        left: 115vw;
+    }
+}
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes vanishing {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}
+@keyframes appearing {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}

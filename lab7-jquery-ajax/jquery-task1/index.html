@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+</head>
+<body>
+    <p><form id="panel-form" autocomplete="off">
+        <b>Логин*</b>
+        <br>
+        <div class="notification"></div>
+        <input id="login" type="text"><br>
+        <br>
+        <b>Пароль*</b>
+        <br>
+        <div class="notification"></div>
+        <input id="passwd" type="password"><br>
+        <br>
+        <b>Подтвердите пароль*</b>
+        <br>
+        <div class="notification"></div>
+        <input id="conf-passwd" type="password"><br>
+        <br>
+        <b>E-mail*</b>
+        <br>
+        <div class="notification"></div>
+        <input id="e-mail" type="text"><br>
+        <br>
+        <b>Телефон</b>
+        <br>
+        <div class="notification"></div>
+        <input id="phone" type="text"><br>
+        <br>
+        <b>Фамилия</b>
+        <br>
+        <div class="notification"></div>
+        <input id="second-name" type="text"><br>
+        <br>
+        <b>Имя</b>
+        <br>
+        <div class="notification"></div>
+        <input id="first-name" type="text"><br>
+        <br>
+        <b>Отчество</b>
+        <br>
+        <div class="notification"></div>
+        <input id="third-name" type="text"><br>
+        <br>
+        <b>Пол</b>
+        <br>
+        <input id="man" name="sex" type="radio">
+        Мужской<br>
+        <input id="woman" name="sex" type="radio">
+        Женский<br>
+        <br>
+        <b>Дата рождения</b>
+        <br>
+        <div class="notification"></div>
+        <input id="birth-date" type="text"><br>
+        <br>
+        <div id="personal-skills">
+            <b>Персональные навыки</b>
+            <br><input id="cb1" type="checkbox">
+            Знание Java<br>
+            <input id="cb2" type="checkbox">
+            Знание Ruby<br>
+            <input id="cb3" type="checkbox">
+            Знание Perl<br>
+            <input id="cb4" type="checkbox">
+            Знание Rust<br>
+        </div><br>
+        <b>О себе</b><br>
+        <div class="notification"></div>
+        <textarea id="bio-text" name="bio"></textarea><br>
+        <br>
+        <b>Выберите вакансию*</b><br>
+        <div class="notification"></div>
+        <select id="job-select" name="job">
+            <option value="j0" disabled selected>
+                Выберите вакансию</option>
+            <option value="j1">Backend-разработчик</option>
+            <option value="j2">Frontend-разработчик</option>
+            <option value="j3">Системный аналитик</option>
+        </select><br><br><br>
+        <br><input id="reset-button" type="reset"><br>
+        <br>
+        <input id="submit-button" type="button" value="Отправить">
+        <br><br>
+        <div id="success"></div>
+    </form></p>
+    <style>
+        body {
+            background-color: rgb(255, 194, 209);
+            font-family: 'consolas', Arial, sans-serif, bold;
+        }
+        #panel-form {
+            text-align: center;
+        }
+        .notification {
+            color: crimson;
+        }
+        #success {
+            color: green;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        let rusAlphabet = new Array()
+        for (let i = "А".charCodeAt(0); i <= "Я".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            rusAlphabet.push(char)
+        }
+        for (let i = "а".charCodeAt(0); i <= "я".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            rusAlphabet.push(char)
+        }
+        let engAlphabet = new Array()
+        for (let i = "A".charCodeAt(0); i <= "Z".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            engAlphabet.push(char)
+        }
+        for (let i = "a".charCodeAt(0); i <= "z".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            engAlphabet.push(char)
+        }
+        let digits = new Array()
+        for (let i = "0".charCodeAt(0); i <= "9".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            digits.push(char)
+        }
+        let smallLetters = new Array()
+        for (let i = "а".charCodeAt(0); i <= "я".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            smallLetters.push(char)
+        }
+        for (let i = "a".charCodeAt(0); i <= "z".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            smallLetters.push(char)
+        }
+        let bigLetters = new Array()
+        for (let i = "А".charCodeAt(0); i <= "Я".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            bigLetters.push(char)
+        }
+        for (let i = "A".charCodeAt(0); i <= "Z".charCodeAt(0); i++) {
+            let char = String.fromCharCode(i)
+            bigLetters.push(char)
+        }
+        let specSymbols = new Array(
+            '~', '!', '?', '@', '#', '$', '%', '^', '&',
+            '*', '_', '-', '+', '(', ')', '[', ']',
+            '{', '}', '>', '<', '/', '\\', '|',
+            '\"', '\'', '.', ',', ':', ';'
+        )
+        let login = $("#login")
+        let passwd = $("#passwd")
+        let confPasswd = $("#conf-passwd")
+        let email = $("#e-mail")
+        let phone = $("#phone")
+        let secondName = $("#second-name")
+        let firstName = $("#first-name")
+        let thirdName = $("#third-name")
+        let man = $("#man")
+        let woman = $("#woman")
+        let birthDate = $("#birth-date")
+        let cb1 = $("#cb1")
+        let cb2 = $("#cb2")
+        let cb3 = $("#cb3")
+        let cb4 = $("#cb4")
+        let bioText = $("#bio-text")
+        let jobSelect = $("#job-select")
+        let resetButton = $("#reset-button")
+        let submitButton = $("#submit-button")
+        let reEmailCheck =
+            /^[A-Za-z0-9]{2,}@([A-Za-z0-9]{2,}\.)+[A-Za-z0-9]{0,4}$/
+        submitButton.click(function() {
+            $(".notification").each(function() {
+                $(this).text(``)
+            })
+            let flag = true
+            if (login.val().length == 0) {
+                let newString = login.prev().text() +
+                    `Обязательное поле!\n`
+                login.prev().text(newString)
+                flag = false
+            }
+            if (login.val().length < 3 ||
+                login.val().length > 16) {
+                let newString = login.prev().text() +
+                    `Логин должен содержать от 3 до 16 символов!\n`
+                login.prev().text(newString)
+                flag = false
+            }
+            let stringLogin = login.val()
+            let loginFlag = true
+            for (let i = 0; i < stringLogin.length && loginFlag; i++) {
+                loginFlag = false
+                let symbol = stringLogin[i]
+                for (let j = 0; j < engAlphabet.length; j++)
+                    if (symbol == engAlphabet[j])
+                        loginFlag = true
+                for (let j = 0; j < digits.length; j++)
+                    if (symbol == digits[j])
+                        loginFlag = true
+            }
+            if (!loginFlag) {
+                let newString = login.prev().text() +
+                    `Поле «Логин» содержит недопустимые символы!\n`
+                login.prev().text(newString)
+                flag = false
+            }
+            if (passwd.val().length == 0) {
+                let newString = passwd.prev().text() +
+                    `Обязательное поле!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            if (passwd.val().length < 8 ||
+                passwd.val().length > 128) {
+                let newString = passwd.prev().text() +
+                    `Пароль должен содержать от 8 до 128 символов!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            let stringPasswd = passwd.val()
+            let passwdFlag = true
+            for (let i = 0; i < stringPasswd.length && passwdFlag; i++) {
+                if (!digits.includes(stringPasswd[i]) &&
+                !rusAlphabet.includes(stringPasswd[i]) &&
+                !engAlphabet.includes(stringPasswd[i]) &&
+                !specSymbols.includes(stringPasswd[i]))
+                    passwdFlag = false
+            }
+            if (!passwdFlag) {
+                let newString = passwd.prev().text() +
+                    `Поле «Пароль» содержит недопустимые символы!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            let passwdBigFlag = false
+            for (let i = 0; i < bigLetters.length && !passwdBigFlag; i++)
+                if (stringPasswd.includes(bigLetters[i]))
+                    passwdBigFlag = true
+            if (!passwdBigFlag) {
+                let newString = passwd.prev().text() +
+                    `Пароль должен содержать как минимум 1 заглавную букву!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            let passwdSmallFlag = false
+            for (let i = 0; i < smallLetters.length && !passwdSmallFlag; i++)
+                if (stringPasswd.includes(smallLetters[i]))
+                    passwdSmallFlag = true
+            if (!passwdSmallFlag) {
+                let newString = passwd.prev().text() +
+                    `Пароль должен содержать как минимум 1 строчную букву!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            let passwdDigitFlag = false
+            for (let i = 0; i < digits.length && !passwdDigitFlag; i++)
+                if (stringPasswd.includes(digits[i]))
+                    passwdDigitFlag = true
+            if (!passwdDigitFlag) {
+                let newString = passwd.prev().text() +
+                    `Пароль должен содержать как минимум 1 цифру!\n`
+                passwd.prev().text(newString)
+                flag = false
+            }
+            if (confPasswd.val().length == 0) {
+                let newString = confPasswd.prev().text() +
+                    `Обязательное поле!\n`
+                confPasswd.prev().text(newString)
+                flag = false
+            }
+            if (passwd.val() != confPasswd.val()) {
+                let newString = confPasswd.prev().text() +
+                    `Пароли не совпадают!\n`
+                confPasswd.prev().text(newString)
+                flag = false
+            }
+            if (email.val().length == 0) {
+                let newString = email.prev().text() +
+                    `Обязательное поле!\n`
+                email.prev().text(newString)
+                flag = false
+            } else if (!reEmailCheck.test(email.val())) {
+                let newString = email.prev().text() +
+                    `E-mail имеет недопустимую форму!\n`
+                email.prev().text(newString)
+                flag = false
+            }
+            let stringSecondName = secondName.val()
+            let secondNameFlag = true
+            for (let i = 0; i < stringSecondName.length && secondNameFlag; i++) {
+                secondNameFlag = false
+                let symbol = stringSecondName[i]
+                for (let j = 0; j < rusAlphabet.length; j++)
+                    if (symbol == rusAlphabet[j])
+                        secondNameFlag = true
+                if (symbol == `-` || symbol == ` `)
+                    secondNameFlag = true
+            }
+            if (!secondNameFlag) {
+                let newString = secondName.prev().text() +
+                    `Поле «Фамилия» содержит недопустимые символы!\n`
+                secondName.prev().text(newString)
+                flag = false
+            }
+            let stringFirstName = firstName.val()
+            let firstNameFlag = true
+            for (let i = 0; i < stringFirstName.length && firstNameFlag; i++) {
+                firstNameFlag = false
+                let symbol = stringFirstName[i]
+                for (let j = 0; j < rusAlphabet.length; j++)
+                    if (symbol == rusAlphabet[j])
+                        firstNameFlag = true
+                if (symbol == `-` || symbol == ` `)
+                    firstNameFlag = true
+            }
+            if (!firstNameFlag) {
+                let newString = firstName.prev().text() +
+                    `Поле «Имя» содержит недопустимые символы!\n`
+                firstName.prev().text(newString)
+                flag = false
+            }
+            let stringThirdName = thirdName.val()
+            let thirdNameFlag = true
+            for (let i = 0; i < stringThirdName.length && thirdNameFlag; i++) {
+                thirdNameFlag = false
+                let symbol = stringThirdName[i]
+                for (let j = 0; j < rusAlphabet.length; j++)
+                    if (symbol == rusAlphabet[j])
+                        thirdNameFlag = true
+                if (symbol == `-` || symbol == ` `)
+                    thirdNameFlag = true
+            }
+            if (!thirdNameFlag) {
+                let newString = thirdName.prev().text() +
+                    `Поле «Отчество» содержит недопустимые символы!\n`
+                thirdName.prev().text(newString)
+                flag = false
+            }
+            if ($("#job-select option:selected").val() == `j0`) {
+                let newString = jobSelect.prev().text() +
+                    `Выберите вакансию!`
+                jobSelect.prev().text(newString)
+                flag = false
+            }
+            if (flag) {
+                login.val(``)
+                passwd.val(``)
+                confPasswd.val(``)
+                email.val(``)
+                phone.val(``)
+                secondName.val(``)
+                firstName.val(``)
+                thirdName.val(``)
+                man.checked = false
+                woman.checked = false
+                birthDate.val(``)
+                cb1.checked = false
+                cb2.checked = false
+                cb3.checked = false
+                cb4.checked = false
+                bioText.val(``)
+                $("#job-select option[value='j0']")
+                    .prop("selected", "true")
+                submitButton.next().next().next()
+                    .text(`Анкета успешно отправлена!`)
+            } else
+                $("#success").text(``)
+        })
+        resetButton.click(function() {
+            $("#success").text(``)
+        })
+    </script>
+</body>
+</html>

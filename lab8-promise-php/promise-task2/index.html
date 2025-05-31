@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <p><h2>Promise.all()</h2></p>
+    Число 1 <input type="text" id="input-1"/><br/><br/>
+    Число 2 <input type="text" id="input-2"/><br/><br/>
+    Число 3 <input type="text" id="input-3"/><br/>
+    <p>Параллельное выполнение Promise<br/>
+        <button id="promise-all">Promise All</button></p>
+    <style>
+        body {
+            background-color: rgb(255, 194, 209);
+            font-family: 'consolas', Arial, sans-serif, bold;
+        }
+    </style>
+    <script>
+        document.querySelector('#promise-all')
+        .addEventListener('click', () => {
+            let num1 = parseInt(
+                document.querySelector('#input-1').value)
+            let num2 = parseInt(
+                document.querySelector('#input-2').value)
+            let num3 = parseInt(
+                document.querySelector('#input-3').value)
+            function timeoutSquare(x) {
+                return new Promise(resolve => {
+                    setTimeout(() => resolve(x ** 2), Math.random() * 1000);
+                });
+            }
+            Promise.all([timeoutSquare(num1), timeoutSquare(num2), timeoutSquare(num3)])
+            .then(results => {
+                alert(results);
+                const sum = 
+                    results.reduce((acc, val) => acc + val, 0);
+                alert(`Сумма: ${sum}`);
+            });
+        })
+    </script>
+</body>
+</html>

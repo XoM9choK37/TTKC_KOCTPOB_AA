@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>JavaScript</title>
+</head>
+<body>
+    <header><h2>Задания по JavaScript — Вариант 23</h2></header>
+    <main>
+        <button class="accordion"><h3>Задание 1 — Date-Time</h3></button>
+        <div class="panel">
+            <p><div id="panel-date">
+                <div id="date-time"></div>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 2 — Calendar</h3></button>
+        <div class="panel">
+            <p><div id="panel-calendar">
+                <table><tr><td>
+                    <div id="panel-calendar-header"></div>
+                </td></tr></table>
+                <table id="calendar"></table>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 3 — DOM Search</h3></button>
+        <div class="panel">
+            <p><div id="panel-search"></div></p>
+        </div>
+        <button class="accordion"><h3>Задание 4 — Random Change</h3></button>
+        <div class="panel">
+            <p><div id="panel-random">
+                <button class="block">1</button>
+                <button class="block">2</button>
+                <button class="block">3</button>
+                <button class="block">4</button>
+                <button class="block">5</button>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 5 — DOM Insert/Delete</h3></button>
+        <div class="panel">
+            <p><div id="panel-insert-delete">
+                <ul id="list-for-deleting"></ul>
+                <button id="add-item">➕ Добавить пункт</button>
+                <p><button id="ul-clear">🆑 Очистить</button></p>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 6 — Dynamic Object Event</h3></button>
+        <div class="panel">
+            <p><div id="panel-object-event">
+                <table>
+                    <tr>
+                        <td><button id="cell-1-1">
+                            <div id="cat-image"></div>
+                        </button></td>
+                        <td><button id="cell-1-2"></button></td>
+                        <td><button id="cell-1-3"></button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="cell-2-1"></button></td>
+                        <td><button id="cell-2-2"></button></td>
+                        <td><button id="cell-2-3"></button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="cell-3-1"></button></td>
+                        <td><button id="cell-3-2"></button></td>
+                        <td><button id="cell-3-3"></button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="cell-4-1"></button></td>
+                        <td><button id="cell-4-2"></button></td>
+                        <td><button id="cell-4-3"></button></td>
+                    </tr>
+                    <tr>
+                        <td><button id="cell-5-1"></button></td>
+                        <td><button id="cell-5-2"></button></td>
+                        <td><button id="cell-5-3"></button></td>
+                    </tr>
+                </table>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 7 — Sweet Menu</h3></button>
+        <div class="panel">
+            <p><div id="panel-sweet-menu">
+                <button id="sweet-button">👉 Здесь сладости! (НАЖМИТЕ)</button>
+                <div id="sweet-panel">
+                    <button id="sweet-1">🍬 Конфета</button>
+                    <button id="sweet-2">🍰 Пирог</button>
+                    <button id="sweet-3">🍒 Варенье</button>
+                    <button id="sweet-4">🍯 Мёд</button>
+                    <button id="sweet-5">🎂 Торт</button>
+                </div>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 8 — Alpha Opacity Picture</h3></button>
+        <div class="panel">
+            <p><div id="panel-alpha">
+                <div id="alpha-text">Это кот 😾</div>
+                <div id="alpha-picture"></div>
+            </div></p>
+        </div>
+        <button class="accordion"><h3>Задание 9, 10 — Regexp & Form</h3></button>
+        <div class="panel">
+            <p><form id="panel-form" autocomplete="off">
+                <b>Логин*</b>
+                <br>
+                <div class="notification"></div>
+                <input id="login" type="text"><br>
+                <br>
+                <b>Пароль*</b>
+                <br>
+                <div class="notification"></div>
+                <input id="passwd" type="password"><br>
+                <br>
+                <b>Подтвердите пароль*</b>
+                <br>
+                <div class="notification"></div>
+                <input id="conf-passwd" type="password"><br>
+                <br>
+                <b>E-mail*</b>
+                <br>
+                <div class="notification"></div>
+                <input id="e-mail" type="text"><br>
+                <br>
+                <b>Телефон</b>
+                <br>
+                <div class="notification"></div>
+                <input id="phone" type="text"><br>
+                <br>
+                <b>Фамилия</b>
+                <br>
+                <div class="notification"></div>
+                <input id="second-name" type="text"><br>
+                <br>
+                <b>Имя</b>
+                <br>
+                <div class="notification"></div>
+                <input id="first-name" type="text"><br>
+                <br>
+                <b>Отчество</b>
+                <br>
+                <div class="notification"></div>
+                <input id="third-name" type="text"><br>
+                <br>
+                <b>Пол</b>
+                <br>
+                <input id="man" name="sex" type="radio">
+                Мужской<br>
+                <input id="woman" name="sex" type="radio">
+                Женский<br>
+                <br>
+                <b>Дата рождения</b>
+                <br>
+                <div class="notification"></div>
+                <input id="birth-date" type="text"><br>
+                <br>
+                <div id="personal-skills">
+                    <b>Персональные навыки</b>
+                    <br><input id="cb1" type="checkbox">
+                    Знание Java<br>
+                    <input id="cb2" type="checkbox">
+                    Знание Ruby<br>
+                    <input id="cb3" type="checkbox">
+                    Знание Perl<br>
+                    <input id="cb4" type="checkbox">
+                    Знание Rust<br>
+                </div><br>
+                <b>О себе</b><br>
+                <div class="notification"></div>
+                <textarea id="bio-text" name="bio"></textarea><br>
+                <br>
+                <b>Выберите вакансию*</b><br>
+                <div class="notification"></div>
+                <select id="job-select" name="job">
+                    <option disabled selected>
+                        Выберите вакансию</option>
+                    <option value="j1">Backend-разработчик</option>
+                    <option value="j2">Frontend-разработчик</option>
+                    <option value="j3">Системный аналитик</option>
+                </select><br><br><br>
+                <br><input id="reset-button" type="reset"><br>
+                <br>
+                <input id="submit-button" type="button" value="Отправить">
+                <br><br>
+                <div id="success"></div>
+            </form></p>
+        </div>
+        <button class="accordion"><h3>Задание 11 — JS-game</h3></button>
+        <div class="panel">
+            ПЕРЕД НАЧАЛОМ ИГРЫ<br>
+            РАЗРЕШИТЕ ПОЯВЛЕНИЕ<br>
+            ВСПЛЫВАЮЩИХ ОКОН<br>
+            В ВАШЕМ БРАУЗЕРЕ<br>
+            <br>
+            <button id="start-game-button">ИГРАТЬ</button>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
